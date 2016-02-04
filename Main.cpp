@@ -4,7 +4,6 @@
 
 #include <bits/stdc++.h>
 #include "algorithms/selection_sort.cpp"
-
 using namespace std;
 void printArray(int* a, int n)
 	{
@@ -26,20 +25,22 @@ void printLinkedList(node* ptr)
 	}
 int main()
 	{
-
+	
+		//srand((int)time(0));
 		int N, random;
 		node *head, *ptr;
 		//cout << "Enter N:" << endl;
 		//cin >> N;
-		N = 10;
+		N = 5;
 		int* array = new int[N];
 		head = new node();
 		head -> data = -1;
+		head -> prev = NULL;
 		ptr = head;
-
 		for ( int i = 0 ; i < N ; i++ )
 			{
 				ptr -> next = new node();
+				ptr -> next -> prev = ptr;
 				random = rand() % 10;
 				array[i] = random;
 				ptr -> next -> data = random;
