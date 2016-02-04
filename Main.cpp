@@ -3,16 +3,9 @@
 // Main.cpp - Top Level File.
 
 #include <bits/stdc++.h>
-#include "algorithms/test.cpp"
 #include "algorithms/selection_sort.cpp"
 
 using namespace std;
-
-struct node
-	{
-		int data;
-		node* link;
-	};
 void printArray(int* a, int n)
 	{
 		for ( int i = 0 ; i < n ; i++ )
@@ -23,11 +16,11 @@ void printLinkedList(node* ptr)
 	{
 		if ( ptr == NULL )
 			return;
-		ptr = ptr -> link;
+		ptr = ptr -> next;
 		while ( ptr != NULL )
 			{
 				cout << ptr -> data << " ";
-				ptr = ptr -> link;
+				ptr = ptr -> next;
 			}
 		cout << endl;
 	}
@@ -36,27 +29,29 @@ int main()
 
 		int N, random;
 		node *head, *ptr;
-		cout << "Enter N:" << endl;
+		//cout << "Enter N:" << endl;
 		//cin >> N;
-		N = 10000;
-		int array[N];
+		N = 10;
+		int* array = new int[N];
 		head = new node();
 		head -> data = -1;
 		ptr = head;
 
 		for ( int i = 0 ; i < N ; i++ )
 			{
-				ptr -> link = new node();
-				random = rand() % 100;
+				ptr -> next = new node();
+				random = rand() % 10;
 				array[i] = random;
-				ptr -> link -> data = random;
-				ptr -> link-> link = NULL;
-				ptr = ptr -> link;
+				ptr -> next -> data = random;
+				ptr -> next-> next = NULL;
+				ptr = ptr -> next;
 			}
 
 		//printArray(array, N);
 		//printLinkedList(head);
-		selection_sort(array, N);
+		//selection_sort(array, N);
+		printLinkedList(head);
+		selection_sort(head);
+		printLinkedList(head);
 		//printArray(array, N);
-
 	}

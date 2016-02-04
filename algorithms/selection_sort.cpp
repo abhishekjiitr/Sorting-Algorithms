@@ -1,5 +1,6 @@
+#include "node.h"
 using namespace std;
-void selection_sort(int array[], int n)
+void selection_sort(int* array, int n)
 	{
 		int cloc1 = clock();
 
@@ -22,29 +23,10 @@ void selection_sort(int array[], int n)
 			}
 		int cloc2 = clock();
 		int diff = cloc2 - cloc1;
-		cout << "Time taken on array: " << diff <<" seconds";
+		cout << "Time taken on array: " << diff <<" seconds" <<endl;
 		//printArray(array, n);
 	}
 void selection_sort(node* head)
 	{
-		node* ptr, *ptr2, *index, *temp;
-		ptr = ptr -> next;
-		while ( ptr -> next != NULL && ptr -> next -> next != NULL )
-			{	
-				ptr2 = ptr -> next; // initially supposed as minimum element
-				index = ptr;
-				int min = ptr -> data
-				while ( ptr2 != NULL && ptr2 -> next != NULL )
-					{
-						if ( min > ptr2 -> data )
-							{
-								index = ptr2;
-								min = ptr2 -> data; 
-							}
-						// SWAP index and ptr
-							
-						ptr2 = ptr2 -> next;
-					}
-				
-			}
+		
 	}
