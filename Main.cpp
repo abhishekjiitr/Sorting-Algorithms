@@ -3,7 +3,8 @@
 // Main.cpp - Top Level File.
 
 #include <bits/stdc++.h>
-#include "algorithms/selection_sort.cpp"
+//#include "algorithms/selection_sort.cpp"
+#include "algorithms/counting_sort.cpp"
 using namespace std;
 void printArray(int* a, int n)
 	{
@@ -31,7 +32,7 @@ int main()
 		node *head, *ptr;
 		//cout << "Enter N:" << endl;
 		//cin >> N;
-		N = 5;
+		N = 10;
 		int* array = new int[N];
 		head = new node();
 		head -> data = -1;
@@ -41,18 +42,19 @@ int main()
 			{
 				ptr -> next = new node();
 				ptr -> next -> prev = ptr;
-				random = rand() % 10;
+				random = rand() % N;
 				array[i] = random;
 				ptr -> next -> data = random;
 				ptr -> next-> next = NULL;
 				ptr = ptr -> next;
 			}
 
-		//printArray(array, N);
+		printArray(array, N);
 		//printLinkedList(head);
-		//selection_sort(array, N);
+		counting_sort(head, N);
+		//printArray(array, N);
 		printLinkedList(head);
-		selection_sort(head);
-		printLinkedList(head);
+		//selection_sort(head. N);
+		//printLinkedList(head);
 		//printArray(array, N);
 	}

@@ -15,59 +15,63 @@ void printer(node* ptr)
 			}
 		cout << endl;
 	}
-void selection_sort(int* array, int n)
+void counting_sort(int* array, int n)
 	{
 		cout << "COUNTING SORT" << endl;
 		clock_t cloc1 = clock();
 
-		int min, index, temp;
-		for ( int i = 0 ; i < n - 1 ; i++ )
+		int* counts = new int[n];
+		//printer(counts, n);
+		for ( int i = 0 ; i < n ; i++ )
 			{
-				min = array[i];
-				index = i;
-				for ( int j = i+1 ; j < n ; j++)
-					{
-						if ( array[j] < min )
-							{
-								index = j;
-								min = array[j];
-							}
-					}
-				temp = array[i];
-				array[i] = min;
-				array[index] = temp;
+				counts[array[i]]++;
 			}
+		for ( int i = 1 ; i < n ; i++ )
+			{
+				counts[i] += counts[i-1];
+			}
+
+		int index = 0;
+		for ( int i = 0 ; i < n ; i++ )
+			{
+				while ( index < counts[i] )
+					{
+						array[index] = i;
+						index++;
+					}
+			}
+
 		clock_t cloc2 = clock();
 		int diff = cloc2 - cloc1;
 		cout << "Time taken on array: " << (double)diff/(double)CLOCKS_PER_SEC * 1000  <<" milli seconds" <<endl;
 		//printArray(array, n);
 	}
-void selection_sort(node* head, int n)
+void counting_sort(node* head, int n)
 	{
 		cout << "COUNTING SORT" << endl;
 		clock_t cloc1 = clock();
 
-		int* count = new int[n];
 		head = head -> next;
-	
-		node *ptr=head;
-		while ( ptr != NULL  )
+		int min, temp;
+		node *i=head, *j, *index;
+		while ( i != NULL && i -> next != NULL )
 			{
-				count[ptr->data]++;
-			}
-		for ( int i = 1 ; i < n ; i++ )
-			{
-				count[i] += count[i-1]; 
-			}
-		int index = 0;
-		ptr = head;
-		for ( int i =  0 ; i < n ; i++ )
-			{
-				while (  index < count[i] )
+				j = i -> next;
+				min = i -> data;
+				index = i;
+				while ( j != NULL )
 					{
-						ptr -> data = i;
-						index++;
+						if ( j -> data < min )
+							{
+								index = j;
+								min = j -> data;
+							}
+						j = j -> next;
 					}
+				temp = i -> data;
+				i -> data = index -> data;
+				index -> data = temp;
+				i = i -> next;
 			}
 
 		clock_t cloc2 = clock();
