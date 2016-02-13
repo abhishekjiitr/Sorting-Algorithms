@@ -4,7 +4,15 @@
 
 #include <bits/stdc++.h>
 //#include "algorithms/selection_sort.cpp"
-#include "algorithms/counting_sort.cpp"
+//#include "algorithms/counting_sort.cpp"
+//#include "algorithms/shell_sort.cpp"
+//#include "algorithms/quick_sort.cpp"
+//#include "algorithms/bucket_sort.cpp"
+//#include "algorithms/bubble_sort.cpp"
+//#include "algorithms/insertion_sort.cpp"
+//#include "algorithms/radix_sort.cpp"
+#include "algorithms/merge_sort.cpp"
+//#include "algorithms/heap_sort.cpp"
 using namespace std;
 void printArray(int* a, int n)
 	{
@@ -28,11 +36,12 @@ int main()
 	{
 	
 		//srand((int)time(0));
-		int N, random;
+		int N;
+		int random;
 		node *head, *ptr;
-		//cout << "Enter N:" << endl;
-		//cin >> N;
+		cout << "Enter N:" << endl;
 		N = 10;
+		cin >> N;
 		int* array = new int[N];
 		head = new node();
 		head -> data = -1;
@@ -42,7 +51,7 @@ int main()
 			{
 				ptr -> next = new node();
 				ptr -> next -> prev = ptr;
-				random = rand() % N;
+				random = (rand() % N);
 				array[i] = random;
 				ptr -> next -> data = random;
 				ptr -> next-> next = NULL;
@@ -51,10 +60,14 @@ int main()
 
 		printArray(array, N);
 		//printLinkedList(head);
-		counting_sort(head, N);
-		//printArray(array, N);
-		printLinkedList(head);
-		//selection_sort(head. N);
+		cout << endl;
+		//bucket_sort(head, N);
+		//bubble_sort(head, N);
+		merge_sort(array, N);
+		//heap_sort(head, N);
+		cout << endl;
+		printArray(array, N);
+		//bucket_sort(head, N);
 		//printLinkedList(head);
-		//printArray(array, N);
+		cout << endl;
 	}
